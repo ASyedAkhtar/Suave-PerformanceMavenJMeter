@@ -1,6 +1,0 @@
-P_URL
-example.com
-google.com
-bing.com
-youtube.com
-suaveinternational.com
