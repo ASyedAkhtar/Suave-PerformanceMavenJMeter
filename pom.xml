@@ -44,11 +44,92 @@
                 </executions>
                 <configuration>
                     <customPropertiesFiles>
-                        <file>./src/test/jmeter/URLs.txt</file>
-                        <file>./src/test/jmeter/loadtest.properties</file>
+                        <file>./src/test/java/jmeter/URLs.txt</file>
+                        <file>./src/test/java/jmeter/loadtest.properties</file>
                     </customPropertiesFiles>
+                    <resultsFileFormat>jtl</resultsFileFormat>
+                    <testFilesDirectory>./src/test/java/jmeter</testFilesDirectory>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>de.codecentric</groupId>
+                <artifactId>jmeter-graph-maven-plugin</artifactId>
+                <version>0.1.0</version>
+                <executions>
+                    <execution>
+                        <id>create-graphs</id>
+                        <goals>
+                            <goal>create-graph</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <inputFile>${project.build.directory}/jmeter/results/20220810-RESTHTTPGETRequest.jtl</inputFile>
+                            <graphs>
+                                <graph>
+                                    <pluginType>ThreadsStateOverTime</pluginType>
+                                    <width>800</width>
+                                    <height>600</height>
+                                    <outputFile>${project.build.directory}/jmeter/results/PerformanceGraph.png</outputFile>
+                                </graph>
+                            </graphs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
 </project>
+<!-- 
+
+
+
+
+
+
+
+
+
+<executions>
+    <execution>
+        <id>configuration-one</id>
+        <goals>
+            <goal>configure</goal>
+        </goals>
+        <configuration>
+            <resultsFileFormat>xml</resultsFileFormat>
+        </configuration>
+    </execution>
+    <execution>
+        <id>configuration-two</id>
+        <goals>
+            <goal>configure</goal>
+        </goals>
+        <configuration>
+            <resultsFileFormat>csv</resultsFileFormat>
+        </configuration>
+    </execution>
+    <execution>
+        <id>performance test one</id>
+        <goals>
+            <goal>jmeter</goal>
+        </goals>
+        <configuration>
+            <selectedConfiguration>configuration-one</selectedConfiguration>
+            <testFilesIncluded>
+                <jMeterTestFile>test1.jmx</jMeterTestFile>
+            </testFilesIncluded>
+        </configuration>
+    </execution>
+    <execution>
+        <id>performance test two</id>
+        <goals>
+            <goal>jmeter</goal>
+        </goals>
+        <configuration>
+            <selectedConfiguration>configuration-two</selectedConfiguration>
+            <testFilesIncluded>
+                <jMeterTestFile>test2.jmx</jMeterTestFile>
+            </testFilesIncluded>
+        </configuration>
+    </execution>
+</executions> -->
