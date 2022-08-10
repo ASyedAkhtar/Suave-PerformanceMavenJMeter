@@ -121,13 +121,15 @@ dist
 /.pnp
 .pnp.js
 
-/target
-
 # testing
 /coverage
 
 # production
 /build
+
+/target
+*.class
+.class
 
 # misc
 .DS_Store
